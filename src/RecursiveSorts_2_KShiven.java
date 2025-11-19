@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class RecursiveSorts_2_KShiven implements RecursiveSorts {
 
-    static void mergeSort(int[] arr) {
+    public static void mergeSort(int[] arr) {
         RecursiveSorts_2_KShiven obj = new RecursiveSorts_2_KShiven();
         obj.mergeSort(arr, 0, arr.length - 1);
 
@@ -20,20 +20,20 @@ public class RecursiveSorts_2_KShiven implements RecursiveSorts {
         merge(arr, low, mid, high);
     }
 
-    static void merge(int[] arr, int low, int mid, int high) {
+    private static void merge(int[] arr, int low, int mid, int high) {
         int Llen = mid - low + 1;
         int Rlen = high - mid;
 
         int[] left = new int[Llen];
         int[] right = new int[Rlen];
 
-        for (int i = 0; i < Llen; i++) {
-            left[i] = arr[low + i];
-        }
+         for (int i = 0; i < Llen; i++) {
+             left[i] = arr[low + i];
+         }
 
-        for (int j = 0; j < Rlen; j++) {
-            right[j] = arr[mid + 1 + j];
-        }
+         for (int j = 0; j < Rlen; j++) {
+             right[j] = arr[mid + 1 + j];
+         }
 
         int i = 0, j = 0, k = low;
 
@@ -77,7 +77,7 @@ public class RecursiveSorts_2_KShiven implements RecursiveSorts {
 
     }
 
-    static int LPartition(int[] arr, int low, int high) {
+    private static int LPartition(int[] arr, int low, int high) {
         int pivot = arr[high];
         int i = low - 1;
 
@@ -93,37 +93,17 @@ public class RecursiveSorts_2_KShiven implements RecursiveSorts {
 
     }
 
-    static void swapArr(int[] arr, int i, int j) {
+    private static void swapArr(int[] arr, int i, int j) {
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
     }
 
-    static boolean isSorted(int[] arr) {
+    public static boolean isSorted(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
             if (arr[i] < arr[i - 1]) return false;
         }
         return true;
-    }
-
-    public static void main(String[] args) {
-
-        Random random = new Random();
-
-        int[] arr = new int[100];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = random.nextInt(100);
-        }
-
-        mergeSort(arr);
-        System.out.println(isSorted(arr));
-
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = random.nextInt(100);
-        }
-
-        quickSort(arr);
-        System.out.println(isSorted(arr));
     }
 
 }
