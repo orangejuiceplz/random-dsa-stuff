@@ -1,23 +1,47 @@
-/* import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
-import static org.junit.jupiter.api.Assertions.*;
 
-@Test
-void testInsertionSort() {
-    int[] arr = {1, 9, 5, 23, 501, 991};
-    Iterative_Sorts_2_KShiven.insertionSort(arr);
-    assertArrayEquals();
-}
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Random;
 
 public class TestAlgs {
+
+    @Test
+    void testMerge() {
+        Random random = new Random();
+
+        int[] arr = new int[100];
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = random.nextInt(100);
+        }
+
+        RecursiveSorts_2_KShiven.mergeSort(arr);
+        assertTrue(RecursiveSorts_2_KShiven.isSorted(arr));
+    }
+
+    @Test
+    void testQuick() {
+        Random random = new Random();
+
+        int[] arr = new int[100];
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = random.nextInt(100);
+        }
+        RecursiveSorts_2_KShiven.quickSort(arr);
+
+        assertTrue(RecursiveSorts_2_KShiven.isSorted(arr));
+
+    }
+
     public static void main(String[] args) {
 
-        int[] toBeSorted = {1, 4, 7 ,5, 9, 11};
+        System.out.println("hello world");
 
-        Iterative_Sorts_2_KShiven.insertionSort(toBeSorted);
     }
-}
 
- */
+
+
+}
