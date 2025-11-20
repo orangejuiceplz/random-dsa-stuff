@@ -1,4 +1,9 @@
+package sorts.iterative;
+
+import static utils.Utilities.swapArr;
+
 public class Iterative_Sorts_2_KShiven {
+
     static void insertionSort(int[] arr) {
         for (int sorted = 1; sorted < arr.length - 1; sorted++) {
             int sorting = sorted;
@@ -23,12 +28,6 @@ public class Iterative_Sorts_2_KShiven {
                 swapArr(arr, best, sorted );
             }
         }
-    }
-
-    static void swapArr (int[] arr, int i, int j) {
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
     }
 
     public static void main(String[] args) {

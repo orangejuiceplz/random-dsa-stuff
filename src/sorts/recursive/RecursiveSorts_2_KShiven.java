@@ -1,4 +1,6 @@
-import java.util.Random;
+package sorts.recursive;
+
+import static utils.Utilities.*;
 
 public class RecursiveSorts_2_KShiven implements RecursiveSorts {
 
@@ -68,6 +70,7 @@ public class RecursiveSorts_2_KShiven implements RecursiveSorts {
     }
 
     public void quickSort(int[] arr, int low, int high) {
+
         if (low >= high) return;
 
         int pivotIndex = LPartition(arr, low, high);
@@ -91,19 +94,6 @@ public class RecursiveSorts_2_KShiven implements RecursiveSorts {
         return i + 1;
 
 
-    }
-
-    private static void swapArr(int[] arr, int i, int j) {
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-    }
-
-    public static boolean isSorted(int[] arr) {
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i] < arr[i - 1]) return false;
-        }
-        return true;
     }
 
 }

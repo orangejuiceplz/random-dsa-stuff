@@ -1,3 +1,5 @@
+package searching;
+
 public class Search_2_KShiven {
     static int linSearch(int[] arr, int target) {
         for (int i = 0; i < arr.length; i++) {
