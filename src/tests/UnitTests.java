@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Random;
 
-public class tests {
+public class UnitTests {
 
     @Test
     void testMerge() {
@@ -37,7 +37,13 @@ public class tests {
         RecursiveSorts_2_KShiven.quickSort(arr);
 
         Assertions.assertTrue(Utilities.isSorted(arr));
-
     }
+
+    public static void main(String[] args) {
+        UnitTests tests = new UnitTests();
+        tests.testMerge();
+        tests.testQuick();
+    }
+
 
 }
