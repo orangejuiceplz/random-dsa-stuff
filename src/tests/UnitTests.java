@@ -1,9 +1,13 @@
 package tests;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import sorts.recursive.RecursiveSorts_2_KShiven;
-import utils.Utilities;
+
+import static utils.Utilities.*;
+import static sorts.recursive.RecursiveSorts_2_KShiven.*;
+import static sorts.iterative.Iterative_Sorts_2_KShiven.*;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -11,39 +15,39 @@ import java.util.Random;
 
 public class UnitTests {
 
+    Random random;
+    int[] arr;
+
     @Test
     void testMerge() {
-        Random random = new Random();
-
-        int[] arr = new int[100000];
-
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = random.nextInt(100000);
-        }
-
-        RecursiveSorts_2_KShiven.mergeSort(arr);
-        Assertions.assertTrue(Utilities.isSorted(arr));
+        mergeSort(arr);
+        assertTrue(isSorted(arr));
     }
 
     @Test
     void testQuick() {
-        Random random = new Random();
+        quickSort(arr);
+        assertTrue(isSorted(arr));
+    }
 
-        int[] arr = new int[100];
+    @Test
+    void testInsertion() {
+        insertionSort(arr);
+        assertTrue(isSorted(arr));
+    }
 
+    @Test
+    void testSelection() {
+        selectionSort(arr);
+        assertTrue(isSorted(arr));
+    }
+
+    @BeforeEach
+    void init() {
+        random = new Random();
+        arr = new int[100000];
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = random.nextInt(100);
+            arr[i] = random.nextInt(100000);
         }
-        RecursiveSorts_2_KShiven.quickSort(arr);
-
-        Assertions.assertTrue(Utilities.isSorted(arr));
     }
-
-    public static void main(String[] args) {
-        UnitTests tests = new UnitTests();
-        tests.testMerge();
-        tests.testQuick();
-    }
-
-
 }
