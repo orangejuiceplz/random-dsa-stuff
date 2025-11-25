@@ -4,7 +4,7 @@ import static utils.Utilities.swapArr;
 
 public class Iterative_Sorts_2_KShiven {
 
-    static void insertionSort(int[] arr) {
+    public static void insertionSort(int[] arr) {
         for (int sorted = 1; sorted < arr.length - 1; sorted++) {
             int sorting = sorted;
             while (sorting != 0  && arr[sorting] < arr[sorting - 1]) {
@@ -14,7 +14,7 @@ public class Iterative_Sorts_2_KShiven {
         }
     }
 
-    static void selectionSort(int[] arr) {
+    public static void selectionSort(int[] arr) {
         for (int sorted = 0; sorted < arr.length - 1; sorted++) {
             int best = sorted;
 
