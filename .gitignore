@@ -28,4 +28,8 @@ bin/
 ### Mac OS ###
 .DS_Store
 
+### testing caches ###
+
+.testCache/
+
 src/dsa-tests/
