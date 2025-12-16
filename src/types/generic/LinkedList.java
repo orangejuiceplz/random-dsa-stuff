@@ -1,5 +1,7 @@
 package types.generic;
 
+import java.util.NoSuchElementException;
+
 public class LinkedList<E> {
 
     private Node<E> head;
@@ -65,7 +67,7 @@ public class LinkedList<E> {
     }
 
     public E removeFirst() {
-        if (head == null) return null;
+        if (head == null) throw new NoSuchElementException("List is empty");
         E value = head.getValue();
         head = head.getNext();
         length--;
@@ -74,15 +76,16 @@ public class LinkedList<E> {
 
     public E removeLast() {
 
-        if (head == null) return null;
+        if (head == null) throw new NoSuchElementException("List is empty");
 
         E valOfRemoved;
 
         if (length == 1) {
-            valOfRemoved = head.getValue();
-            head = null;
-            length--;
-            return valOfRemoved;
+//            valOfRemoved = head.getValue();
+//            head = null;
+//            length--;
+//            return valOfRemoved;
+              removeFirst();
         }
 
         Node<E> current = head;
@@ -106,6 +109,13 @@ public class LinkedList<E> {
         return valOfReplace;
     }
 
+    /**
+     *
+     * @param index
+     * index to remove
+     * @return
+     * returns value E at the removed index
+     */
     public E remove(int index) {
         if (index < 0 || index > length - 1) throw new IllegalArgumentException("Index out of bounds");
         if (index == 0) {
