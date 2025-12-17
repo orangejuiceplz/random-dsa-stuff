@@ -1,11 +1,9 @@
 package tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import java.util.Random;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import types.generic.LinkedList;
@@ -34,7 +32,7 @@ public class LinkedTests {
     void init() {
         list = new LinkedList<>();
         rand = new Random();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < rand.nextInt(1000000000); i++) {
             list.append(rand.nextInt(10));
         }
     }
