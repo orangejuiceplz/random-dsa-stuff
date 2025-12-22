@@ -7,6 +7,16 @@ public class TaskManager_2_KShiven {
     private Task_2_KShiven firstTask;
     private int size; // this is mainly used for the testing class to pick a rand element
 
+
+    /**
+     * adds the task sorted already via the deadline
+     * @param id
+     * id to add
+     * @param description
+     * description you want for the task
+     * @param deadline
+     * deadline in a String format. Deadline should be written in YYYY/MM/DD or YYYY-MM-DD with zeroes appended to fit the format if needed
+     */
     public void addTask(int id, String description, String deadline) {
         Task_2_KShiven task = new Task_2_KShiven(id, description, deadline);
 
@@ -31,7 +41,15 @@ public class TaskManager_2_KShiven {
         size++;
     }
 
+    /**
+     * tries to remove the task by the id specified
+     * @param id
+     * id to remove
+     * @throws NoSuchElementException
+     * if it is unable to find the ID, throw a NoSuchElementException error if you want to throw it
+     */
     public void removeTask(int id) {
+        boolean shouldThrow = true; //change this if you want to throw or just print.
         if (firstTask == null) throw new NoSuchElementException("List is empty, ID can't exist");
         if (firstTask.getID() == id) {
             firstTask = firstTask.getNextTask();
@@ -47,14 +65,27 @@ public class TaskManager_2_KShiven {
             }
             current = current.getNextTask();
         }
-        throw new NoSuchElementException("Task with ID " + id + " not found");
+        if (!shouldThrow) {
+            System.out.println("No task with ID " + id + " could be found, so nothing was removed");
+        } else {
+            throw new NoSuchElementException("Task with ID " + id + " not found");
+        }
     }
 
+
+    /**
+     * searches all tests before (includes the specified deadline) the deadline
+     * @param deadline
+     * deadline to search by (includes the date)
+     * @throws NoSuchElementException
+     * if the list empty or if they couldn't find anything before the date
+     */
     public void searchTasksByDeadline(String deadline) {
         if (firstTask == null) throw new NoSuchElementException("List is empty, so a deadline for anything can't exist");
         System.out.println("Tasks due by " + deadline + " are");
         Task_2_KShiven current = firstTask;
         boolean haveWeFoundAnythingYetIRealizedThisIsAReallyLongVariableName = false;
+        boolean shouldWeThrow = false;
 
         while (current != null) {
             if (isBefore(current.getDeadline(), deadline)) {
@@ -66,13 +97,17 @@ public class TaskManager_2_KShiven {
             current = current.getNextTask();
         }
         if (!haveWeFoundAnythingYetIRealizedThisIsAReallyLongVariableName) {
-            throw new NoSuchElementException("Tasks by this deadline are not found");
+            if (!shouldWeThrow) {
+                System.out.println("No tasks by the deadline found");
+            } else {
+                throw new NoSuchElementException("Tasks by this deadline are not found");
+            }
         }
     }
 
 
     /**
-     * trys to display all tasks
+     * display all tasks
      */
     public void displayAllTasks() {
         Task_2_KShiven current = firstTask;
@@ -81,6 +116,12 @@ public class TaskManager_2_KShiven {
             current = current.getNextTask();
         }
     }
+
+    /**
+     * displays the first task
+     * @throws NoSuchElementException
+     * if list is empty
+     */
     public void displayNextTask() {
         if (firstTask == null) throw new NoSuchElementException("List is empty, ID can't exist");
         System.out.println(firstTask);
@@ -88,11 +129,10 @@ public class TaskManager_2_KShiven {
 
 
     /**
-     *
      * @param sDeadLine1
-     * first deadline
+     * first deadline (YYYY/MM/DD)
      * @param sDeadLine2
-     * second deadline
+     * second deadline (YYYY/MM/DD)
      * @return
      * returns if the first deadline is before the second deadline
      */
@@ -102,6 +142,12 @@ public class TaskManager_2_KShiven {
         return deadLine1 <= deadLine2;
     }
 
+    /**
+     * @param deadLine
+     * deadline in format YYYY/MM/DD or YYYY-MM-DD
+     * @return
+     * the extracted date as an int for easier removal. removes any slashes or dashes that was made by the user
+     */
     private int extractDate(String deadLine) {
         if (deadLine.contains("/")) {
             deadLine = deadLine.replace("/", "");
@@ -110,6 +156,8 @@ public class TaskManager_2_KShiven {
         }
         return Integer.parseInt(deadLine);
     }
+
+    // ----------------------------------------- used exclusively for the testing suite -----------------------
 
     public int getSize() {
         return this.size;

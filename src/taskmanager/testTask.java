@@ -1,8 +1,12 @@
 package taskmanager;
 
+import tests.TaskmanTest;
+import tests.TaskmanTest.*;
+
 public class testTask {
     public static void main(String[] args) {
         TaskManager_2_KShiven taskManager = new TaskManager_2_KShiven();
+        TaskmanTest test = new TaskmanTest();
         taskManager.addTask(2, "Task 2", "12-01-2005");
         taskManager.addTask(1, "Task 97", "11-31-2005");
         taskManager.addTask(3, "Task 3", "12-31-2005");
@@ -15,5 +19,7 @@ public class testTask {
         taskManager.displayNextTask();
         System.out.println("-----------------------");
         taskManager.searchTasksByDeadline("11-31-2004");
+        System.out.println("-----------------------");
+        System.out.println(test.genDate());
     }
 }
