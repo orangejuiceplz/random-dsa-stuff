@@ -1,5 +1,6 @@
 package tests.stacksandqueues;
 
+import java.util.Scanner;
 import java.util.Stack;
 
 public class Stack_2_KShiven {
@@ -9,7 +10,9 @@ public class Stack_2_KShiven {
 
 
 
+
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
         Stack_2_KShiven b = new Stack_2_KShiven();
 
