@@ -1,5 +1,6 @@
 package tests.stacksandqueues;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Queue_2_KShiven {
@@ -10,34 +11,147 @@ public class Queue_2_KShiven {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("How many people are on line: ");
-        int people = scanner.nextInt();
-        String person;
+        int people = 0;
+
+        while (true) {
+            System.out.println("How many people are on line: ");
+            try {
+                people = scanner.nextInt();
+
+                if (people > 0) {
+                    break;
+                } else {
+                    System.out.println("People must be greater than 0");
+                    scanner.nextLine();
+                    System.out.println();
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input");
+                System.out.println();
+                scanner.nextLine();
+            }
+        }
+        scanner.nextLine();
+
+
+        String person = "";
+
         for (int i = 0; i < people; i++) {
-            System.out.println("Please enter the next person who got onto the line(no spaces): ");
-            person = scanner.nextLine();
+            while(true) {
+                System.out.println("Please enter the next person who got onto the line(no spaces): ");
+
+                try {
+                    person = scanner.nextLine();
+
+                    if (person.contains(" ")) {
+                        System.out.println("Person name cannot contain spaces");
+                        System.out.println();
+                    } else {
+                        break;
+                    }
+
+
+                } catch (InputMismatchException e) {
+                    scanner.nextLine();
+                    System.out.println("Invalid input");
+                    System.out.println();
+                }
+            }
+
             queue.enqueue(person);
         }
 
-        System.out.println("How many cars on each coaster: ");
-        int cars = scanner.nextInt();
+        int cars = 0;
 
-        System.out.println("How many seats in each car: ");
-        int seats = scanner.nextInt();
+        while (true) {
+            System.out.println("How many cars on each coaster: ");
+            try {
+                cars = scanner.nextInt();
 
-        System.out.println("How many times should each coaster run: ");
-        int runs = scanner.nextInt();
+                if (cars <= 0) {
+                    System.out.println("Cars must be greater than 0");
+                    System.out.println();
+                } else {
+                    break;
+                }
 
-        for (int i = 0; i < runs; i++) {
+            } catch (InputMismatchException e) {
+                scanner.nextLine();
+                System.out.println("Invalid input");
+                System.out.println();
+            }
+        }
 
-            System.out.println("Run " + i + 1);
+        int seats;
 
-            for (int j = 0; j < seats * cars; j++) {
-                System.out.println(queue.dequeue());
+        while (true) {
+            System.out.println("How many seats in each car: ");
+
+            try {
+                seats = scanner.nextInt();
+
+                if (seats <= 0) {
+                    System.out.println("Seats must be greater than 0");
+                    System.out.println();
+                } else {
+                    break;
+                }
+
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input");
+                scanner.nextLine();
+                System.out.println();
             }
 
         }
 
+
+
+        int runs;
+
+
+        while (true) {
+
+            System.out.println("How many times should each coaster run: ");
+
+            try {
+                runs = scanner.nextInt();
+
+                if (runs < 0) {
+                    System.out.println("Runs cannot be negative");
+                    System.out.println();
+                } else {
+                    break;
+                }
+
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input");
+                System.out.println();
+                scanner.nextLine();
+            }
+        }
+
+
+        for (int i = 0; i < runs; i++) {
+
+            System.out.println("Run # " + (i + 1));
+            System.out.println("-------------");
+
+            for (int j = 0; j < seats * cars; j++) {
+                if (!queue.isEmpty()) {
+                    System.out.println(queue.dequeue());
+                }
+            }
+
+            System.out.println("-------------");
+        }
+
+        System.out.println("----------------");
+        System.out.println("Line");
+        while (!queue.isEmpty()) {
+            System.out.println(queue.dequeue());
+        }
+        System.out.println("-------------");
     }
 
 
