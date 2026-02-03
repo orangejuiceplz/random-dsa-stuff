@@ -14,7 +14,7 @@ public class Queue_2_KShiven {
         int people = 0;
 
         while (true) {
-            System.out.println("How many people are on line: ");
+            System.out.print("How many people are on line: ");
             try {
                 people = scanner.nextInt();
 
@@ -34,28 +34,24 @@ public class Queue_2_KShiven {
         scanner.nextLine();
 
 
-        String person = "";
+        String person;
 
         for (int i = 0; i < people; i++) {
             while(true) {
-                System.out.println("Please enter the next person who got onto the line(no spaces): ");
+                System.out.print("Please enter the next person who got onto the line(no spaces): ");
 
-                try {
                     person = scanner.nextLine();
 
-                    if (person.contains(" ")) {
+                    if (person.contains(" ") || person.isEmpty()) {
                         System.out.println("Person name cannot contain spaces");
                         System.out.println();
                     } else {
                         break;
                     }
+                scanner.nextLine();
 
 
-                } catch (InputMismatchException e) {
-                    scanner.nextLine();
-                    System.out.println("Invalid input");
-                    System.out.println();
-                }
+
             }
 
             queue.enqueue(person);
@@ -64,7 +60,7 @@ public class Queue_2_KShiven {
         int cars = 0;
 
         while (true) {
-            System.out.println("How many cars on each coaster: ");
+            System.out.print("How many cars on each coaster: ");
             try {
                 cars = scanner.nextInt();
 
@@ -85,7 +81,7 @@ public class Queue_2_KShiven {
         int seats;
 
         while (true) {
-            System.out.println("How many seats in each car: ");
+            System.out.print("How many seats in each car: ");
 
             try {
                 seats = scanner.nextInt();
@@ -112,7 +108,7 @@ public class Queue_2_KShiven {
 
         while (true) {
 
-            System.out.println("How many times should each coaster run: ");
+            System.out.print("How many times should each coaster run: ");
 
             try {
                 runs = scanner.nextInt();
@@ -137,7 +133,9 @@ public class Queue_2_KShiven {
             System.out.println("Run # " + (i + 1));
             System.out.println("-------------");
 
-            for (int j = 0; j < seats * cars; j++) {
+            int capacity = seats * cars;
+
+            for (int j = 0; j < capacity; j++) {
                 if (!queue.isEmpty()) {
                     System.out.println(queue.dequeue());
                 }

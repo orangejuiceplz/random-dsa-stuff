@@ -86,6 +86,8 @@ public class Stack_2_KShiven {
 
     public void WRITE(String character) {
         document += character;
+        // stack.clear();
+        //
     }
 
     public void READ() {
@@ -97,12 +99,17 @@ public class Stack_2_KShiven {
             stack.push(document.substring(document.length() - 1));
             document = document.substring(0, document.length() - 1);
         } else {
-            System.out.println("There is nothing to do as the document is empty!");
+            System.out.println("There is nothing to do as the document is empty");
         }
     }
 
     public void REDO() {
-        document += stack.pop();
+        if (!stack.isEmpty()) {
+            document += stack.pop();
+            System.out.println("Done");
+        } else {
+            System.out.println("Nothing to do");
+        }
     }
 
 
